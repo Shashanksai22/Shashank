@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const suggestionsBox = document.getElementById('chat-suggestions');
 
     const qaData = {
-        'ARM & Industry Exp': 'At Eximietas Design (Client: ARM), I built a UVM environment with UVM RAL and a predictive scoreboard for a DSP datapath IP, and verified top-level interconnect & power handshakes on ARM SCPSS[cite: 1].',
-        'PCIe 2.0 Project': 'Designed a 9-module full-duplex PCIe 2.0 Data Link Layer and verified it with an IEEE 1800.2 UVM testbench achieving 100% functional coverage (51 bins) and 94.8% RTL line coverage[cite: 1].',
-        'EDA Tools': 'Synopsys VCS, Siemens QuestaSim, SpyGlass (Lint/CDC), Synopsys Design Compiler, Verilator, Yosys, Vivado, and GTKWave[cite: 1, 2].',
-        'Contact & Availability': 'Available immediately for DV/ASIC roles in Bengaluru or Hyderabad. Email: shashanksaivalasa@gmail.com | Phone: +91 8501853459[cite: 1].'
+        'ARM & Industry Exp': 'At Eximietas Design (Client: ARM), I built a UVM environment with UVM RAL and a predictive scoreboard for a DSP datapath IP, and verified top-level interconnect & power handshakes on ARM SCPSS.',
+        'PCIe 2.0 Project': 'Designed a 9-module full-duplex PCIe 2.0 Data Link Layer and verified it with an IEEE 1800.2 UVM testbench achieving 100% functional coverage (51 bins) and 94.8% RTL line coverage.',
+        'EDA Tools': 'Synopsys VCS, Siemens QuestaSim, SpyGlass (Lint/CDC), Synopsys Design Compiler, Verilator, Yosys, Vivado, and GTKWave.',
+        'Contact & Availability': 'Available immediately for DV/ASIC roles in Bengaluru or Hyderabad. Email: shashanksaivalasa@gmail.com | Phone: +91 8501853459.'
     };
 
     function addMessage(text, sender) {
