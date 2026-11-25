@@ -5,172 +5,384 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valasa Shashank Sai | Design Verification Engineer</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <!-- Top Navigation -->
     <header class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">&lt;VSS<span>_DV</span>/&gt;</a>
+            <a href="#" class="logo">
+                <span class="logo-dot"></span>
+                VALASA<span>_DV</span>
+            </a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects &amp; Waveforms</a></li>
+                    <li><a href="#bugs">Bug Post-Mortems</a></li>
+                    <li><a href="#skills">EDA Stack</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
         <section id="about" class="hero">
-            <div class="badge">Available Immediately • Bengaluru / Hyderabad</div>
-            <h1>Valasa Shashank Sai</h1>
-            <h2>Design Verification Engineer | RTL &amp; ASIC Verification</h2>
-            <p class="summary">
-                Design Verification Engineer with hands-on industry experience in SystemVerilog, IEEE 1800.2 UVM, UVM RAL, constrained-random verification, and reference-model development. Experienced in DSP datapath IP verification and ARM SoC-level verification (SCPSS), with deep protocol expertise in PCIe 2.0 (DLL), AXI4, APB4, and CDC.
-            </p>
-            <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">Explore Verification Projects</a>
-                <a href="https://github.com/Shashanksai22" target="_blank" class="btn btn-secondary">GitHub Profile</a>
-                <a href="https://www.linkedin.com/in/shashank-sai-valasa-406a00200/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="status-pill">
+                        <span class="pulse"></span>
+                        Immediate Joiner &bull; Bengaluru / Hyderabad
+                    </div>
+                    <h1>Valasa Shashank Sai</h1>
+                    <h2>Design Verification Engineer &bull; RTL, UVM &amp; SoC Verification</h2>
+                    <p class="summary">
+                        Design Verification Engineer with hands-on industry experience verifying an ARM DSP datapath IP and SoC-level interconnects (ARM SCPSS). Specialized in IEEE 1800.2 UVM testbench architecture, UVM RAL, predictive reference modeling, SVA, CDC sign-off, and coverage closure across PCIe 2.0, AXI4, APB4, and RISC-V.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">Inspect Verification Lab &rarr;</a>
+                        <a href="https://github.com/Shashanksai22" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+                        <a href="https://www.linkedin.com/in/shashank-sai-valasa-406a00200/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+                        <button id="copy-email-btn" class="btn btn-ghost" title="Copy Email Address">Copy Email</button>
+                    </div>
+                </div>
+
+                <!-- Live Verification Telemetry Panel -->
+                <aside class="telemetry-card">
+                    <div class="telemetry-header">
+                        <span class="term-dots"><i></i><i></i><i></i></span>
+                        <span>regression_summary.rpt</span>
+                    </div>
+                    <div class="telemetry-body">
+                        <div class="stat-row">
+                            <span class="stat-label">PCIe 2.0 DLL Functional Cov</span>
+                            <span class="stat-val accent">100.0% (51/51 bins)</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+
+                        <div class="stat-row">
+                            <span class="stat-label">PCIe 2.0 RTL Line Coverage</span>
+                            <span class="stat-val primary">94.8% (18/18 tests)</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill primary-bg" style="width: 94.8%;"></div></div>
+
+                        <div class="stat-row">
+                            <span class="stat-label">Concurrent SVA Assertions</span>
+                            <span class="stat-val accent">0 Failures (8/8 Active)</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+
+                        <div class="telemetry-meta">
+                            <div><span>IP/SoC Exp:</span> ARM SCPSS &amp; DSP</div>
+                            <div><span>Sign-Off:</span> VCS &bull; Questa &bull; SpyGlass</div>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </section>
 
         <!-- Experience Section -->
         <section id="experience" class="section">
-            <h2 class="section-title">Industry Experience</h2>
+            <div class="section-head">
+                <h2 class="section-title">Industry Experience</h2>
+                <span class="section-sub">IP &amp; SoC-Level Functional Verification</span>
+            </div>
+
             <div class="card timeline-card">
                 <div class="card-header">
                     <div>
+                        <div class="role-badge">Client: ARM &bull; Semiconductor IP &amp; SoC</div>
                         <h3>Design Verification Engineer</h3>
-                        <p class="company">Eximietas Design (Client: ARM) • Bengaluru, India</p>
+                        <p class="company">Eximietas Design &bull; Bengaluru, India</p>
                     </div>
-                    <span class="date-badge">Apr 2026 – Sep 2026 </span>
+                    <span class="date-badge">Apr 2026 &ndash; Sep 2026</span>
                 </div>
-                <ul class="bullet-list">
-                    <li>Architected and implemented a UVM verification environment for a DSP datapath IP, verifying arithmetic pipelines, dynamic configurations, interrupts, and statistics via directed and constrained-random tests.</li>
-                    <li>Applied <strong>UVM RAL</strong> to model and verify control/status registers (RO, RW, WO access policies, reset checks, and bit-bash sequences).</li>
-                    <li>Developed a SystemVerilog predictive reference model to independently verify DSP outputs, sample counts, and accumulator statistics in an automated scoreboard.</li>
-                    <li>Executed SoC-level verification testcases for ARM’s <strong>SCPSS (System Control Processor Subsystem)</strong>, validating top-level interconnect routing, power-control handshakes, and multi-IP interactions.</li>
-                </ul>
+
+                <div class="exp-highlights">
+                    <div class="exp-pillar">
+                        <h4>DSP Datapath UVM Environment</h4>
+                        <p>Built a constrained-random &amp; directed UVM testbench verifying arithmetic pipelines, dynamic configuration updates, interrupts, and real-time statistics.</p>
+                    </div>
+                    <div class="exp-pillar">
+                        <h4>UVM RAL &amp; Bit-Bash Closure</h4>
+                        <p>Modeled control/status registers in UVM RAL verifying reset values, RO/RW/WO access policies, front-door accesses, and automated bit-bash sequences.</p>
+                    </div>
+                    <div class="exp-pillar">
+                        <h4>Predictive Reference Model</h4>
+                        <p>Developed a SystemVerilog predictive model independently computing expected DSP outputs, sample counts, accumulators, and min/max statistics for scoreboard checking.</p>
+                    </div>
+                    <div class="exp-pillar">
+                        <h4>ARM SCPSS SoC Verification</h4>
+                        <p>Verified top-level interconnect routing, system-level power-control handshakes, and multi-IP interactions with host cores on the System Control Processor Subsystem.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- Featured Projects + Interactive Architecture & Waveform Viewer -->
         <section id="projects" class="section">
-            <h2 class="section-title">Featured RTL &amp; Verification Projects</h2>
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">RTL &amp; Verification Lab</h2>
+                    <span class="section-sub">Click any project to inspect block diagrams, waveforms &amp; verification metrics</span>
+                </div>
+                <div class="filter-bar" role="tablist">
+                    <button class="filter-btn active" data-filter="all">All (4)</button>
+                    <button class="filter-btn" data-filter="uvm">UVM / VIP</button>
+                    <button class="filter-btn" data-filter="rtl">RTL Design</button>
+                    <button class="filter-btn" data-filter="cdc">CDC / Protocols</button>
+                </div>
+            </div>
+
             <div class="grid">
-                <div class="card project-card">
+                <!-- Project 1: PCIe 2.0 DLL -->
+                <article class="card project-card" data-tags="uvm rtl cdc">
                     <div class="card-top">
-                        <span class="tag">PCIe 2.0</span>
+                        <span class="tag">PCIe 2.0 DLL</span>
                         <span class="tag">IEEE 1800.2 UVM</span>
                         <span class="tag">SVA</span>
                     </div>
-                    <h3>PCIe 2.0 Data Link Layer (DLL) – RTL &amp; UVM</h3>
-                    <p>Designed a 9-module full-duplex PCIe 2.0 DLL featuring 12-bit TLP sequence numbering, 32-bit LCRC generation/checking, an 8-slot Replay Buffer, and ACK/NAK DLLP control .</p>
+                    <h3>PCIe 2.0 Data Link Layer (DLL) &ndash; RTL &amp; UVM</h3>
+                    <p>Full-duplex 9-module synthesizable PCIe 2.0 DLL featuring 12-bit sequence numbering, 32-bit LCRC generation/checking, an 8-slot Replay Buffer, ACK/NAK DLLP control, and non-preemptive PHY TX arbitration.</p>
                     <div class="metrics">
-                        <span>✓ 100% Functional Coverage (51 bins) </span>
-                        <span>✓ 94.8% RTL Line Coverage </span>
-                        <span>✓ 18/18 Passing Tests &amp; 8 Zero-Failure SVAs </span>
+                        <span>&#10003; 100% Functional Coverage (51 bins)</span>
+                        <span>&#10003; 94.8% RTL Line Coverage &bull; 18/18 Tests</span>
+                        <span>&#10003; 8 Concurrent SVAs &bull; Yosys &amp; Verilator Clean</span>
                     </div>
-                    <a href="https://github.com/Shashanksai22/PCIe_2_0_DLL" target="_blank" class="card-link">View Repository &rarr;</a>
-                </div>
+                    <div class="card-actions">
+                        <button class="btn-inspect" data-modal="pcie">Inspect Architecture &amp; Waveform</button>
+                        <a href="https://github.com/Shashanksai22/PCIe_2_0_DLL" target="_blank" rel="noopener" class="card-link">Repo &rarr;</a>
+                    </div>
+                </article>
 
-                <div class="card project-card">
+                <!-- Project 2: Async AXI4-to-APB4 Bridge -->
+                <article class="card project-card" data-tags="rtl cdc">
                     <div class="card-top">
                         <span class="tag">AXI4 / APB4</span>
-                        <span class="tag">CDC</span>
+                        <span class="tag">Async CDC</span>
                         <span class="tag">SpyGlass</span>
                     </div>
                     <h3>Asynchronous AXI4-to-APB4 Bridge</h3>
-                    <p>Built a synthesizable bridge connecting 1 AXI4 master to 10 APB4 slaves across asynchronous ACLK/PCLK domains using 4 Gray-code async FIFOs and 2-FF synchronizers .</p>
+                    <p>Synthesizable bridge routing 1 AXI4 master to 10 APB4 slaves across asynchronous ACLK/PCLK domains using 4 Gray-code async FIFOs, 2-FF synchronizers, and APB master arbitration.</p>
                     <div class="metrics">
-                        <span>✓ All 5 AXI Channels (FIXED &amp; INCR bursts) </span>
-                        <span>✓ Clean SpyGlass Lint/CDC &amp; DC Synthesis </span>
+                        <span>&#10003; All 5 AXI Channels (FIXED &amp; INCR bursts)</span>
+                        <span>&#10003; SpyGlass Lint/CDC Zero Violations</span>
+                        <span>&#10003; Synopsys Design Compiler Timing Closed</span>
                     </div>
-                    <a href="https://github.com/Shashanksai22" target="_blank" class="card-link">View on GitHub &rarr;</a>
-                </div>
+                    <div class="card-actions">
+                        <button class="btn-inspect" data-modal="bridge">Inspect CDC &amp; Handshake</button>
+                        <a href="https://github.com/Shashanksai22" target="_blank" rel="noopener" class="card-link">GitHub &rarr;</a>
+                    </div>
+                </article>
 
-                <div class="card project-card">
+                <!-- Project 3: 5-Channel AXI4 VIP -->
+                <article class="card project-card" data-tags="uvm cdc">
                     <div class="card-top">
                         <span class="tag">SystemVerilog</span>
                         <span class="tag">UVM VIP</span>
                         <span class="tag">QuestaSim</span>
                     </div>
-                    <h3>5-Channel AXI Protocol Verification IP (VIP)</h3>
-                    <p>Developed a reusable UVM VIP with configurable master/slave agents supporting FIXED, INCR, and WRAP bursts, WSTRB handling, and functional coverage closure .</p>
+                    <h3>5-Channel AXI4 Protocol Verification IP (VIP)</h3>
+                    <p>Reusable UVM VIP with configurable active/passive master &amp; slave agents supporting FIXED, INCR, and WRAP bursts, WSTRB byte-lane masking, and out-of-order channel handshakes.</p>
                     <div class="metrics">
-                        <span>✓ Multi-channel pipelined handshakes </span>
-                        <span>✓ Full burst-boundary &amp; response coverage </span>
+                        <span>&#10003; Parallel AW/W/B &amp; AR/R Execution</span>
+                        <span>&#10003; WRAP Boundary &amp; Response Coverage</span>
                     </div>
-                    <a href="https://github.com/Shashanksai22" target="_blank" class="card-link">View on GitHub &rarr;</a>
-                </div>
+                    <div class="card-actions">
+                        <button class="btn-inspect" data-modal="axivip">Inspect VIP Architecture</button>
+                        <a href="https://github.com/Shashanksai22" target="_blank" rel="noopener" class="card-link">GitHub &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- Project 4: RISC-V RV32I -->
+                <article class="card project-card" data-tags="rtl">
+                    <div class="card-top">
+                        <span class="tag">RISC-V RV32I</span>
+                        <span class="tag">Pipelined RTL</span>
+                        <span class="tag">UART SoC</span>
+                    </div>
+                    <h3>RISC-V (RV32I) Pipelined Processor &amp; UART SoC</h3>
+                    <p>Implemented 3-stage and 5-stage RV32I pipelined processor cores with hazard detection, forwarding paths, memory-mapped UART peripheral integration, and self-checking assembly tests.</p>
+                    <div class="metrics">
+                        <span>&#10003; Data &amp; Control Hazard Forwarding</span>
+                        <span>&#10003; Lint &amp; Synthesis Verified</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-inspect" data-modal="riscv">Inspect Pipeline Details</button>
+                        <a href="https://github.com/Shashanksai22" target="_blank" rel="noopener" class="card-link">GitHub &rarr;</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Engineering Bug Post-Mortems (High Value for DV Interviews) -->
+        <section id="bugs" class="section">
+            <div class="section-head">
+                <h2 class="section-title">Verification Bug Post-Mortems</h2>
+                <span class="section-sub">Real corner-case bugs isolated using SVA, VCD waveforms &amp; protocol checks</span>
+            </div>
+
+            <div class="accordion">
+                <details class="bug-item" open>
+                    <summary>
+                        <span class="bug-id">BUG #01 &bull; PCIe 2.0 DLL</span>
+                        <span class="bug-title">Mid-Packet TLP Corruption During Simultaneous NAK DLLP Arbitration</span>
+                        <span class="bug-badge">Caught by Concurrent SVA</span>
+                    </summary>
+                    <div class="bug-body">
+                        <p><strong>Symptom:</strong> Intermittent LCRC mismatches occurred on the RX side exclusively when an RX framing error triggered a high-priority NAK DLLP while the TX arbiter was mid-way through streaming a multi-beat TLP.</p>
+                        <p><strong>Root Cause:</strong> The TX arbiter prioritized DLLPs strictly over TLPs without locking the grant across multi-cycle TLP frames, preempting active TLPs mid-packet.</p>
+                        <p><strong>Resolution:</strong> Added an atomic packet-lock state until <code>tlp_end</code> asserts, enforcing priority order (<code>DLLP &gt; Replay &gt; New TLP</code>) cleanly at packet boundaries. Verified with a dedicated SVA framing property.</p>
+                    </div>
+                </details>
+
+                <details class="bug-item">
+                    <summary>
+                        <span class="bug-id">BUG #02 &bull; PCIe 2.0 DLL</span>
+                        <span class="bug-title">12-Bit Sequence Rollover (4095 &rarr; 0) Misclassified as Duplicate TLP</span>
+                        <span class="bug-badge">Caught by Directed Rollover Test</span>
+                    </summary>
+                    <div class="bug-body">
+                        <p><strong>Symptom:</strong> After transmitting 4,096 TLPs, packet sequence <code>0</code> was silently dropped by the RX DLL as an old duplicate.</p>
+                        <p><strong>Root Cause:</strong> Unsigned comparator (<code>rx_seq &lt; next_rcv_seq</code>) evaluated <code>0 &lt; 4095</code> as true across the wrap boundary.</p>
+                        <p><strong>Resolution:</strong> Replaced unsigned comparison with 12-bit two's-complement signed modular difference (<code>logic signed [11:0] diff = rx_seq - next_rcv_seq;</code>), isolating expected (<code>0</code>), duplicate (<code>diff[11]==1</code>), and out-of-order gaps across rollover.</p>
+                    </div>
+                </details>
+
+                <details class="bug-item">
+                    <summary>
+                        <span class="bug-id">BUG #03 &bull; AXI4-APB4 Bridge</span>
+                        <span class="bug-title">Async FIFO Full/Empty Pointer Race Across Fast-to-Slow ACLK/PCLK Domains</span>
+                        <span class="bug-badge">Caught by SpyGlass CDC &amp; VCS Waveforms</span>
+                    </summary>
+                    <div class="bug-body">
+                        <p><strong>Symptom:</strong> Back-to-back AXI4 INCR write bursts dropped the final beat when <code>ACLK</code> ran 3&times; faster than <code>PCLK</code>.</p>
+                        <p><strong>Root Cause:</strong> Write-side <code>wfull</code> flag compared binary write pointer against unsynchronized read pointer bits during burst back-pressure transitions.</p>
+                        <p><strong>Resolution:</strong> Implemented (N+1)-bit Gray-code pointers with 2-FF synchronizers and MSB/2nd-MSB inversion full detection, eliminating SpyGlass CDC structural/functional warnings.</p>
+                    </div>
+                </details>
             </div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills" class="section">
-            <h2 class="section-title">Technical Stack</h2>
+            <div class="section-head">
+                <h2 class="section-title">Technical Stack &amp; EDA Flow</h2>
+                <span class="section-sub">Industry-standard commercial &amp; open-source verification toolchains</span>
+            </div>
             <div class="skills-grid">
                 <div class="skill-box">
-                    <h4>HDL &amp; Verification</h4>
-                    <p>SystemVerilog, Verilog, UVM, UVM RAL, Constrained-Random Verification, SVA, Functional &amp; Code Coverage </p>
+                    <h4>HDL &amp; Verification Languages</h4>
+                    <div class="pill-list">
+                        <span>SystemVerilog (IEEE 1800)</span>
+                        <span>Verilog</span>
+                        <span>UVM 1.2 / 1800.2</span>
+                        <span>UVM RAL</span>
+                        <span>SVA</span>
+                        <span>CRV</span>
+                        <span>Functional &amp; Code Coverage</span>
+                    </div>
                 </div>
                 <div class="skill-box">
-                    <h4>Protocols &amp; Architecture</h4>
-                    <p>PCIe 2.0 (DLL), AXI4, APB4, CDC, Async/Sync FIFOs, FSMs, DSP Datapath, ARM SCPSS </p>
+                    <h4>Protocols &amp; Microarchitecture</h4>
+                    <div class="pill-list">
+                        <span>PCIe 2.0 (DLL)</span>
+                        <span>AXI4 / AXI4-Lite</span>
+                        <span>APB4</span>
+                        <span>RISC-V (RV32I)</span>
+                        <span>CDC &amp; Async FIFOs</span>
+                        <span>ARM SCPSS</span>
+                        <span>DSP Datapath</span>
+                    </div>
                 </div>
                 <div class="skill-box">
-                    <h4>EDA &amp; Open-Source Tools</h4>
-                    <p>Synopsys VCS, Siemens QuestaSim, SpyGlass (Lint/CDC), Synopsys Design Compiler, Verilator, Yosys, Vivado, GTKWave </p>
+                    <h4>EDA &amp; Synthesis Toolchains</h4>
+                    <div class="pill-list">
+                        <span>Synopsys VCS</span>
+                        <span>Siemens QuestaSim</span>
+                        <span>Synopsys SpyGlass (Lint/CDC)</span>
+                        <span>Design Compiler</span>
+                        <span>Verilator</span>
+                        <span>Yosys</span>
+                        <span>Vivado</span>
+                        <span>GTKWave</span>
+                    </div>
                 </div>
                 <div class="skill-box">
-                    <h4>Scripting &amp; Core</h4>
-                    <p>Linux, Perl, Git, Shell Scripting, Static Timing Analysis (STA), DFT Basics </p>
+                    <h4>Automation &amp; Sign-Off</h4>
+                    <div class="pill-list">
+                        <span>Linux</span>
+                        <span>Perl</span>
+                        <span>Python</span>
+                        <span>Shell Scripting</span>
+                        <span>Git</span>
+                        <span>STA Basics</span>
+                        <span>DFT Basics</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Education & Publication -->
         <section id="education" class="section">
-            <h2 class="section-title">Education &amp; Publication</h2>
+            <h2 class="section-title">Education &amp; Research Publication</h2>
             <div class="grid-2">
                 <div class="card">
+                    <div class="role-badge">B.Tech &bull; National Institute of Technology</div>
                     <h3>B.Tech in Electronics &amp; Communication Engineering</h3>
-                    <p class="company">National Institute of Technology, Delhi (2020 – 2024) | CGPA: 7.1/10.0 </p>
-                    <p class="sub-text"><strong>Advanced VLSI Design &amp; Verification:</strong> Maven Silicon (Completed Apr 2026) </p>
+                    <p class="company">National Institute of Technology (NIT), Delhi &bull; 2020 &ndash; 2024 | CGPA: 7.17/10.0</p>
+                    <p class="sub-text"><strong>Advanced VLSI Design &amp; Verification:</strong> Maven Silicon, Bengaluru (Completed Apr 2026)</p>
                 </div>
                 <div class="card">
-                    <h3>Peer-Reviewed Journal Publication</h3>
-                    <p class="company">Taylor &amp; Francis (2024) </p>
-                    <p class="sub-text"><em>"Coverage Probability Analysis of a Double IRS Assisted SISO System"</em> </p>
+                    <div class="role-badge">Peer-Reviewed Journal Paper</div>
+                    <h3>Coverage Probability Analysis of a Double IRS Assisted SISO System</h3>
+                    <p class="company">Taylor &amp; Francis &bull; Published 2024</p>
+                    <p class="sub-text">Analytical modeling and coverage probability derivations for Intelligent Reflecting Surface (IRS)-assisted wireless communication links.</p>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" class="section contact-section">
-            <h2 class="section-title">Get In Touch</h2>
-            <p>Actively looking for full-time roles in <strong>Design Verification / ASIC DV / SoC Verification</strong>.</p>
-            <div class="contact-links">
-                <a href="mailto:shashanksaivalasa@gmail.com">📧 shashanksaivalasa@gmail.com </a>
-                <span>📱 +91 8501853459 </span>
-                <a href="https://www.linkedin.com/in/shashank-sai-valasa-406a00200/" target="_blank">🔗 LinkedIn</a>
-                <a href="https://github.com/Shashanksai22" target="_blank">💻 GitHub</a>
+            <div class="card contact-card">
+                <h2>Ready for Design Verification &amp; SoC DV Roles</h2>
+                <p>Open to full-time Design Verification, ASIC Verification, and SoC Verification roles in <strong>Bengaluru</strong> or <strong>Hyderabad</strong> with immediate availability.</p>
+                <div class="contact-links">
+                    <a href="mailto:shashanksaivalasa@gmail.com">shashanksaivalasa@gmail.com</a>
+                    <span>+91 8501853459</span>
+                    <a href="https://www.linkedin.com/in/shashank-sai-valasa-406a00200/" target="_blank" rel="noopener">LinkedIn Profile</a>
+                    <a href="https://github.com/Shashanksai22" target="_blank" rel="noopener">GitHub (@Shashanksai22)</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Floating DV Assistant Chatbot -->
+    <!-- Architecture & Waveform Lightbox Modal -->
+    <div id="project-modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modal-title">Project Architecture</h3>
+                <button id="modal-close" class="modal-close" aria-label="Close Modal">&times;</button>
+            </div>
+            <div id="modal-body" class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Floating Interactive DV Assistant -->
     <div id="chat-widget">
-        <button id="chat-toggle">💬 Ask DV Bot</button>
+        <button id="chat-toggle">Ask Shashank's DV Bot</button>
         <div id="chat-box" class="hidden">
             <div class="chat-header">
-                <span>Shashank's DV Assistant</span>
-                <button id="chat-close">&times;</button>
+                <span>DV Recruiter Assistant</span>
+                <button id="chat-close" aria-label="Close Chat">&times;</button>
             </div>
             <div id="chat-messages"></div>
             <div id="chat-suggestions"></div>
