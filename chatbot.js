@@ -1,12 +1,120 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Nav Toggle
+    // 1. Animated Silicon Interconnect & Packet Flow Canvas
+    const canvas = document.getElementById('silicon-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height, traces = [];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initTraces();
+        }
+
+        function initTraces() {
+            traces = [];
+            const count = Math.min(26, Math.floor(width / 55));
+            for (let i = 0; i < count; i++) {
+                traces.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    len: 60 + Math.random() * 140,
+                    speed: 0.35 + Math.random() * 0.75,
+                    horiz: Math.random() > 0.45,
+                    color: Math.random() > 0.35 ? 'rgba(56, 189, 248,' : 'rgba(16, 185, 129,'
+                });
+            }
+        }
+
+        function drawSilicon() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Subtle circuit grid nodes
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.035)';
+            ctx.lineWidth = 1;
+            const step = 48;
+            for (let x = 0; x < width; x += step) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+                ctx.stroke();
+            }
+            for (let y = 0; y < height; y += step) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+
+            // Moving signal pulses along silicon tracks
+            traces.forEach(t => {
+                ctx.beginPath();
+                ctx.strokeStyle = t.color + '0.22)';
+                ctx.lineWidth = 1.5;
+                if (t.horiz) {
+                    ctx.moveTo(t.x, t.y);
+                    ctx.lineTo(t.x + t.len, t.y);
+                    ctx.stroke();
+
+                    ctx.fillStyle = t.color + '0.65)';
+                    ctx.beginPath();
+                    ctx.arc(t.x + t.len, t.y, 2, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    t.x += t.speed;
+                    if (t.x > width + 50) t.x = -t.len;
+                } else {
+                    ctx.moveTo(t.x, t.y);
+                    ctx.lineTo(t.x, t.y + t.len);
+                    ctx.stroke();
+
+                    ctx.fillStyle = t.color + '0.65)';
+                    ctx.beginPath();
+                    ctx.arc(t.x, t.y + t.len, 2, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    t.y += t.speed;
+                    if (t.y > height + 50) t.y = -t.len;
+                }
+            });
+
+            requestAnimationFrame(drawSilicon);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        drawSilicon();
+    }
+
+    // 2. Interactive Telemetry HUD Switcher
+    const hudTabs = document.querySelectorAll('.hud-tab');
+    const hudPanels = {
+        pcie: document.getElementById('hud-panel-pcie'),
+        arm: document.getElementById('hud-panel-arm'),
+        axi: document.getElementById('hud-panel-axi')
+    };
+
+    hudTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            hudTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const key = tab.dataset.hud;
+            Object.keys(hudPanels).forEach(k => {
+                if (hudPanels[k]) {
+                    hudPanels[k].classList.toggle('hidden', k !== key);
+                }
+            });
+        });
+    });
+
+    // 3. Mobile Nav Toggle
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
     }
 
-    // 2. Copy Email Button
+    // 4. Copy Email Button
     const copyBtn = document.getElementById('copy-email-btn');
     if (copyBtn) {
         copyBtn.addEventListener('click', () => {
@@ -17,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Project Filter Bar
+    // 5. Project Filter Bar
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
     filterBtns.forEach(btn => {
@@ -27,16 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const filter = btn.dataset.filter;
             projectCards.forEach(card => {
                 const tags = card.dataset.tags || '';
-                if (filter === 'all' || tags.includes(filter)) {
-                    card.classList.remove('hide-card');
-                } else {
-                    card.classList.add('hide-card');
-                }
+                card.classList.toggle('hide-card', filter !== 'all' && !tags.includes(filter));
             });
         });
     });
 
-    // 4. Interactive Architecture & Waveform Lightbox
+    // 6. Interactive Architecture & Waveform Lightbox
     const modal = document.getElementById('project-modal');
     const modalTitle = document.getElementById('modal-title');
     const modalBody = document.getElementById('modal-body');
@@ -50,24 +154,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="diagram-box">
                     <div class="diagram-caption">// Full-Duplex PCIe 2.0 DLL Block & UVM Verification Architecture</div>
                     <svg viewBox="0 0 720 210" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace">
-                        <rect x="10" y="20" width="140" height="170" rx="8" fill="#151e30" stroke="#38bdf8" stroke-width="1.5"/>
+                        <rect x="10" y="20" width="140" height="170" rx="8" fill="#131d31" stroke="#38bdf8" stroke-width="1.5"/>
                         <text x="80" y="45" fill="#38bdf8" font-size="11" text-anchor="middle" font-weight="bold">UVM TL Agent</text>
                         <text x="80" y="70" fill="#94a3b8" font-size="9.5" text-anchor="middle">TL Sequencer/Drv</text>
                         <text x="80" y="95" fill="#94a3b8" font-size="9.5" text-anchor="middle">TL Monitor</text>
                         <text x="80" y="145" fill="#10b981" font-size="9.5" text-anchor="middle">Virtual Sequencer</text>
                         <text x="80" y="165" fill="#10b981" font-size="9.5" text-anchor="middle">Predictive SB</text>
 
-                        <rect x="200" y="20" width="320" height="75" rx="8" fill="#0f1624" stroke="#10b981" stroke-width="1.5"/>
+                        <rect x="200" y="20" width="320" height="75" rx="8" fill="#0d1422" stroke="#10b981" stroke-width="1.5"/>
                         <text x="360" y="40" fill="#10b981" font-size="11" text-anchor="middle" font-weight="bold">TX Path: SeqNum + LCRC32 + 8-Slot Replay</text>
                         <text x="360" y="62" fill="#e2e8f0" font-size="9.5" text-anchor="middle">TX Arbiter Priority: DLLP &gt; Replay TLP &gt; New TLP</text>
                         <text x="360" y="80" fill="#94a3b8" font-size="9" text-anchor="middle">Atomic Packet Lock until tlp_end</text>
 
-                        <rect x="200" y="115" width="320" height="75" rx="8" fill="#0f1624" stroke="#f59e0b" stroke-width="1.5"/>
+                        <rect x="200" y="115" width="320" height="75" rx="8" fill="#0d1422" stroke="#f59e0b" stroke-width="1.5"/>
                         <text x="360" y="135" fill="#f59e0b" font-size="11" text-anchor="middle" font-weight="bold">RX Path: LCRC Check + Signed Seq Diff</text>
                         <text x="360" y="157" fill="#e2e8f0" font-size="9.5" text-anchor="middle">diff = rx_seq - next_rcv_seq (Modulo 4096)</text>
                         <text x="360" y="175" fill="#94a3b8" font-size="9" text-anchor="middle">0: Accept+ACK | &lt;0: Dup Drop | &gt;0: Schedule NAK</text>
 
-                        <rect x="570" y="20" width="140" height="170" rx="8" fill="#151e30" stroke="#38bdf8" stroke-width="1.5"/>
+                        <rect x="570" y="20" width="140" height="170" rx="8" fill="#131d31" stroke="#38bdf8" stroke-width="1.5"/>
                         <text x="640" y="45" fill="#38bdf8" font-size="11" text-anchor="middle" font-weight="bold">UVM PHY Agent</text>
                         <text x="640" y="75" fill="#94a3b8" font-size="9.5" text-anchor="middle">LCRC Error Inject</text>
                         <text x="640" y="100" fill="#94a3b8" font-size="9.5" text-anchor="middle">ACK/NAK DLLP Gen</text>
@@ -95,11 +199,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <text x="390" y="81" fill="#ef4444" font-size="9" text-anchor="middle">Back-pressure Active During Replay</text>
 
                         <text x="10" y="114" fill="#94a3b8">phy_tx_seq</text>
-                        <rect x="90" y="100" width="160" height="18" fill="#151e30" stroke="#38bdf8"/>
+                        <rect x="90" y="100" width="160" height="18" fill="#131d31" stroke="#38bdf8"/>
                         <text x="170" y="113" fill="#e2e8f0" text-anchor="middle">TLP #5 &rarr; TLP #6</text>
-                        <rect x="250" y="100" width="280" height="18" fill="#151e30" stroke="#10b981"/>
+                        <rect x="250" y="100" width="280" height="18" fill="#131d31" stroke="#10b981"/>
                         <text x="390" y="113" fill="#10b981" text-anchor="middle">Rewind &amp; Replay: TLP #5 &rarr; TLP #6</text>
-                        <rect x="530" y="100" width="120" height="18" fill="#151e30" stroke="#38bdf8"/>
+                        <rect x="530" y="100" width="120" height="18" fill="#131d31" stroke="#38bdf8"/>
                         <text x="590" y="113" fill="#e2e8f0" text-anchor="middle">TLP #7</text>
                     </svg>
                 </div>
@@ -111,20 +215,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="diagram-box">
                     <div class="diagram-caption">// Multi-Clock Domain Architecture (ACLK &harr; PCLK)</div>
                     <svg viewBox="0 0 720 185" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace">
-                        <rect x="15" y="20" width="150" height="145" rx="8" fill="#151e30" stroke="#38bdf8" stroke-width="1.5"/>
+                        <rect x="15" y="20" width="150" height="145" rx="8" fill="#131d31" stroke="#38bdf8" stroke-width="1.5"/>
                         <text x="90" y="45" fill="#38bdf8" font-size="11" text-anchor="middle" font-weight="bold">AXI4 Slave IF</text>
                         <text x="90" y="68" fill="#94a3b8" font-size="9.5" text-anchor="middle">Domain: ACLK</text>
                         <text x="90" y="95" fill="#e2e8f0" font-size="9.5" text-anchor="middle">AW / W / B</text>
                         <text x="90" y="118" fill="#e2e8f0" font-size="9.5" text-anchor="middle">AR / R Channels</text>
 
-                        <rect x="225" y="20" width="260" height="145" rx="8" fill="#0f1624" stroke="#10b981" stroke-width="1.5"/>
+                        <rect x="225" y="20" width="260" height="145" rx="8" fill="#0d1422" stroke="#10b981" stroke-width="1.5"/>
                         <text x="355" y="45" fill="#10b981" font-size="11" text-anchor="middle" font-weight="bold">4x Gray-Code Async FIFOs</text>
                         <text x="355" y="70" fill="#e2e8f0" font-size="9.5" text-anchor="middle">Write Cmd FIFO &bull; Read Addr FIFO</text>
                         <text x="355" y="92" fill="#e2e8f0" font-size="9.5" text-anchor="middle">Write Resp FIFO &bull; Read Data FIFO</text>
                         <text x="355" y="122" fill="#f59e0b" font-size="9.5" text-anchor="middle">2-FF Pointer Synchronizers</text>
                         <text x="355" y="144" fill="#94a3b8" font-size="9" text-anchor="middle">SpyGlass Lint &amp; CDC Clean</text>
 
-                        <rect x="545" y="20" width="160" height="145" rx="8" fill="#151e30" stroke="#38bdf8" stroke-width="1.5"/>
+                        <rect x="545" y="20" width="160" height="145" rx="8" fill="#131d31" stroke="#38bdf8" stroke-width="1.5"/>
                         <text x="625" y="45" fill="#38bdf8" font-size="11" text-anchor="middle" font-weight="bold">APB4 Master &amp; Mux</text>
                         <text x="625" y="68" fill="#94a3b8" font-size="9.5" text-anchor="middle">Domain: PCLK</text>
                         <text x="625" y="95" fill="#e2e8f0" font-size="9.5" text-anchor="middle">10x PSEL Decoder</text>
@@ -186,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeModal();
     });
 
-    // 5. Floating Recruiter Assistant Chatbot
+    // 7. Floating Recruiter Assistant Chatbot
     const toggleBtn = document.getElementById('chat-toggle');
     const closeBtn = document.getElementById('chat-close');
     const chatBox = document.getElementById('chat-box');
